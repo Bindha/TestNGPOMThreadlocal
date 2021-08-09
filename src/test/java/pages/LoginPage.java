@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import base.BeforeAndAfter;
-import testcase.HomePage;
+
 
 public class LoginPage extends BeforeAndAfter{
   private By oUsername=By.id("username");
@@ -37,9 +37,10 @@ public class LoginPage extends BeforeAndAfter{
 }
   public LoginPage clickSignIn_InvalidDetails() {
 	  driver.findElement(oSignIn).click();
+	  System.out.println("Checking whether the page is in home page or login page :");
 	  boolean result= driver.findElement(oRegister).isDisplayed();
 		 if(result) {
-			 System.out.println("User is in Login Page due to invalid Credentials	");
+			 System.out.println("User remains in Login Page due to invalid Credentials	");
 		 }
 		 else {
 			 System.out.println("User is not in Login Page");
@@ -47,4 +48,10 @@ public class LoginPage extends BeforeAndAfter{
 	  return this;
 
 }
+  public Registrationpage clickRegisterAccount() {
+	  driver.findElement(oRegister).click();
+	  return new Registrationpage();
+
+}
+  
 }

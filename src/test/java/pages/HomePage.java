@@ -1,9 +1,9 @@
-package testcase;
+package pages;
 
 import org.openqa.selenium.By;
 
 import base.BeforeAndAfter;
-import pages.LoginPage;
+
 
 public class HomePage extends BeforeAndAfter{
  
