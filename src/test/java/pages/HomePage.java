@@ -10,6 +10,7 @@ public class HomePage extends BeforeAndAfter{
  
  private By oWelcome=By.xpath("//h3[contains(text(),' Welcome!')]");
  private By oLogout=By.xpath("//a[text()='Logout']");
+ private By oAccount=By.xpath("//strong[text()='Kanya']");
  private WebDriver driver;
  
  public HomePage(WebDriver driver) {
@@ -31,5 +32,20 @@ public class HomePage extends BeforeAndAfter{
 	 driver.findElement(oLogout).click();
 	 return new LoginPage(driver);
 	 
+ }
+ public NewAccountPage applyNewAccount() {
+	 driver.findElement(By.xpath("//div[@tabindex='0']")).click();
+	 return new NewAccountPage(driver);
+ }
+ 
+ public HomePage accountCreated() {
+	 boolean result= driver.findElement(oAccount).isDisplayed();
+	 if(result) {
+		 System.out.println("Account Created in the name of Kanya ");
+	 }
+	 else {
+		 System.out.println("account not created");
+	 }
+	 return this;
  }
 }
