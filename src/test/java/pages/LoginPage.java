@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 import base.BeforeAndAfter;
 
 
@@ -9,6 +11,11 @@ public class LoginPage extends BeforeAndAfter{
   private By oPasssword=By.id("password");
   private By oSignIn=By.xpath("//button[text()='Sign In']");
   private By oRegister=By.xpath("//*[text()='Register For Account']");
+  private WebDriver driver;
+   
+  public LoginPage(WebDriver driver) {
+	  this.driver=driver;
+  }
   
   public boolean verifyElement() {
 	  if(driver.findElement(oUsername).isDisplayed() &&
@@ -32,7 +39,7 @@ public class LoginPage extends BeforeAndAfter{
 }
   public HomePage clickSignIn() {
 	  driver.findElement(oSignIn).click();
-	  return new HomePage();
+	  return new HomePage(driver);
 
 }
   public LoginPage clickSignIn_InvalidDetails() {
@@ -50,7 +57,7 @@ public class LoginPage extends BeforeAndAfter{
 }
   public Registrationpage clickRegisterAccount() {
 	  driver.findElement(oRegister).click();
-	  return new Registrationpage();
+	  return new Registrationpage(driver);
 
 }
   

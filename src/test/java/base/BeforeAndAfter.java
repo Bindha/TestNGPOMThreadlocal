@@ -8,15 +8,22 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+
+import utilities.ExcelReader;
+import utilities.PropertiesReader;
 
 
 public class BeforeAndAfter {
 	public int iBrowserType = 5; // 1-Chrome,2-FF,3-Edge
-	public static WebDriver driver;
-	public String sURL="https://uibank.uipath.com/";
+	public WebDriver driver;
+	public String sURL="";
+	public String sProName="Config";
+	public String sSheetName="";
+	
 	
   @BeforeClass
-  public void invokeBrowser() {
+  public void invokeBrowser() throws Exception {
 
 		switch (iBrowserType) {
 		case 1:
@@ -43,6 +50,7 @@ public class BeforeAndAfter {
 		}
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
+		sURL=PropertiesReader.getPropertyValue(sProName,"url");
 		driver.get(sURL);
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -52,6 +60,12 @@ public class BeforeAndAfter {
   public void closeBrowser() {
 		driver.quit();
 	}
+  @DataProvider(name="ExcelData")
+  public Object[][] getExcelValue(){
+	 Object[][] data = ExcelReader.getSheet(sSheetName);
+	
+	  return data;
+  }
   
 }
 
