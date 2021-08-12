@@ -2,91 +2,90 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import com.aventstack.extentreports.ExtentTest;
 
 import base.BeforeAndAfter;
+import libraries.SeleniumWrapper;
 
-public class Registrationpage extends BeforeAndAfter {
-	private By oFirstName=By.id("firstName");
-	private By oMiddleName=By.id("middleName");
-	private By oLastName=By.id("lastName");
-	private By oTitle=By.id("title");
-	private By oGender=By.id("sex");
-	private By oUserName=By.id("username");
-	private By oEmail=By.id("email");
-	private By oPassword=By.id("password");
-	private By oRegister=By.xpath("//button[text()='Register']");
-	private By oLogin=By.xpath("//a[text()='Login']");
+public class Registrationpage extends BeforeAndAfter{
+
+	private By oFirstName = By.id("firstName");
+	private By oMiddleName = By.id("middleName");
+	private By oLastName = By.id("lastName");
+	private By oUserName = By.id("username");
+	private By oEmail = By.id("email");
+	private By oPassword = By.id("password");
+	private By oRegister = By.xpath("//button[text()='Register']");
+	private By oTitle = By.id("title");
+	private By oGender = By.id("sex");
+	private By oLogin = By.xpath("//a[text()='Login']");
 	private WebDriver driver;
-	   
-	  public Registrationpage(WebDriver driver) {
-		  this.driver=driver;
-	  }
-	
+	private SeleniumWrapper oWrap;
 
-	
-	public boolean verifyElement() {
-		  if(driver.findElement(oUserName).isDisplayed() &&
-				  driver.findElement(oEmail).isDisplayed() && driver.findElement(oPassword).isDisplayed() && 
-				  driver.findElement(oRegister).isDisplayed()){
-			  return true;
-		  }else {
-			  return false;}
-					  
-			}
-	 public Registrationpage enter_the_first_name(String firstname) {
-		  driver.findElement(oFirstName).sendKeys(firstname);
-		  return this;
-		  
-	  }
-	 public Registrationpage enter_the_middle_name(String middlename) {
-		  driver.findElement(oMiddleName).sendKeys("T");
-		  return this;
-		  
-	  } 
-	 public Registrationpage enter_the_last_name(String lastname) {
-		  driver.findElement(oLastName).sendKeys(lastname);
-		  return this;
-		  
-	  }
-	 
-	 public Registrationpage select_the_title() {
-	      Select oSelect=new Select(driver.findElement(oTitle));
-	      oSelect.selectByVisibleText("Mrs");
-		  return this;
-		  
-	  }
-	 public Registrationpage select_the_gender() {
-	      Select oSelect=new Select(driver.findElement(oGender));
-	      oSelect.selectByVisibleText("Female");
-		  return this;
-		  
-	  }
-	 public Registrationpage enter_the_user_name(String username) {
-		  driver.findElement(oUserName).sendKeys(username);
-		  return this;
-		  
-	  }
-	 public Registrationpage enter_the_email(String email) {
-		  driver.findElement(oEmail).sendKeys(email);
-		  return this;
-		  
-	  }
-	 public Registrationpage enter_the_password(String password) {
-		  driver.findElement(oPassword).sendKeys(password);
-		  return this;
-		  
-	  }
-	 public EmailVerificationPage click_on_register_button() {
-	      driver.findElement(oRegister).click();
-	      return new EmailVerificationPage(driver);
-	 
-	 }
-	 public LoginPage clickOnLogin() {
-			driver.findElement(oLogin).click();
-			return new LoginPage(driver);
+	public Registrationpage(WebDriver driver, ExtentTest node) {
+		this.driver = driver;
+		this.node = node;
+		oWrap = new SeleniumWrapper(driver,node);
+	}
 
+	public boolean verifyElement() {		
+		if(oWrap.verifyDisplayedwithReturn(driver.findElement(oUserName))&&
+				oWrap.verifyDisplayedwithReturn(driver.findElement(oEmail))&&
+				oWrap.verifyDisplayedwithReturn(driver.findElement(oPassword))&&
+				oWrap.verifyDisplayedwithReturn(driver.findElement(oRegister))) {
+			return true;
+		}else {
+			return false;
 		}
-	
+	}
 
+	public Registrationpage enter_the_first_name(String firstname) {
+		oWrap.type(driver.findElement(oFirstName), firstname);
+		return this;
+	}
+
+	public Registrationpage enter_the_middle_name(String middlename) {
+		oWrap.type(driver.findElement(oMiddleName), middlename);
+		return this;
+	}
+
+	public Registrationpage enter_the_last_name(String sLastName) {
+		oWrap.type(driver.findElement(oLastName), sLastName);
+		return this;
+	}
+
+	public Registrationpage select_the_title() {
+		oWrap.selectDropDownUsingVisibleText(driver.findElement(oTitle), "Mr");
+		return this;
+	}
+
+	public Registrationpage select_the_gender() {
+		oWrap.selectDropDownUsingVisibleText(driver.findElement(oGender), "Female");
+		return this;
+	}
+
+	public Registrationpage enter_the_user_name(String username) {
+		oWrap.type(driver.findElement(oUserName), username);
+		return this;
+	}
+
+	public Registrationpage enter_the_email(String email) {
+		oWrap.type(driver.findElement(oEmail), email);
+		return this;
+	}
+
+	public Registrationpage enter_the_password(String password) {
+		oWrap.type(driver.findElement(oPassword), password);
+		return this;
+	}
+
+	public EmailVerificationPage click_on_register_button() {
+		oWrap.click(driver.findElement(oRegister));
+		return new EmailVerificationPage(driver,node); 
+	}
+
+	public LoginPage clickOnLogin() { 
+		oWrap.click(driver.findElement(oLogin));
+		return new LoginPage(driver,node);
+	}
 }

@@ -4,7 +4,7 @@
   <test thread-count="5" name="Test" parallel="classes">
     <classes>
      <class name="testcase.TC001_LoginPage"/>
-     <class name="testcase.TC002_Registration"/>
+     <class name="testcase.TC002_Registrationpage"/>
       <class name="testcase.TC003_ApplyNewAccount"/>
     </classes>
   </test> <!-- Test -->
