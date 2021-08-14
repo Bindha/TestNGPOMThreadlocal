@@ -7,29 +7,32 @@ import org.testng.annotations.Test;
 import base.BeforeAndAfter;
 import pages.LoginPage;
 
-public class TC003_ApplyNewAccount extends BeforeAndAfter {
+public class TC004_FundTransfer extends BeforeAndAfter {
 	@BeforeTest
 	public void setUpTestCase() {
-		
-		authors = "Kanya";
-		category = "Regression";
-		testCaseName = "NewAccount";
-		testDescription = "Testing the account opening functionality";
-		module = "Account opening Module";
+
+		authors = "Brindha";
+		category = "Smoke";
+		testCaseName = "Fundtransfer";
+		testDescription = "Testing the FundTransfer functionality";
+		module = "FundTransfer Module";
 	}
+
   @Test(priority = 1)
   public void verifyAlltheElements(){
 	  boolean result = new LoginPage(driver,node).verifyElement();
 		Assert.assertTrue(result);
   }
   @Test(priority = 2)
-  public void creatingAccount() {
+  public void transferFund() {
 	  new LoginPage(driver,node)
 	  .typeUserName("Brindha")
 	  .typePassword("Rajabindhu30")
-	  .clickSignIn().applyNewAccount().
-	  accountNickName().typeOfAccount().applyButton().
-	  verifyPage().viewAccount().accountCreated().clickLogout();
-	  
-  }  
+	  .clickSignIn().transferMoney()
+	  .select_from().select_to()
+	  .enter_amount().click_review()
+	  .click_confirm_transfer().clickLogout();
+		  
+  }
+  
 }

@@ -13,7 +13,8 @@ public class HomePage extends BeforeAndAfter{
 	private By oWelcome = By.xpath("//h3[contains(text(),' Welcome!')]");
 	private By oLogout = By.xpath("//a[text()='Logout']");
 	 private By oAccount=By.xpath("//strong[text()='Kanya']");
-
+	 private By oTransfer=By.xpath("(//a[@class='btn-blue-outline'])[1]");
+	 private By oLoan=By.xpath("(//a[@id='applyForLoan'])[1]");
 	private WebDriver driver;
 	
 	private SeleniumWrapper oWrap;
@@ -54,5 +55,15 @@ public class HomePage extends BeforeAndAfter{
 		 System.out.println("account not created");
 	 }
 	 return this;
+ }
+ public TransferMoneyPage transferMoney() {
+	 oWrap.click(driver.findElement(oTransfer));
+	 System.out.println("To transfer funds");
+	 return new TransferMoneyPage(driver, node);
+ }
+ public ApplyLoanPage applyLoan() {
+	 oWrap.click(driver.findElement(oLoan));
+	 System.out.println("Applying for new Loan");
+	 return new ApplyLoanPage(driver,node);
  }
 }

@@ -15,14 +15,14 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
-
+import wrapper.ScreenshotUtil;
 import libraries.HTMLReport;
 import utilities.ExcelReader;
 import utilities.PropertiesReader;
 
 
 public class BeforeAndAfter extends HTMLReport{
-
+    String str;
 	public int iBrowserType = 1; // 1-Chrome,2-FF,3-Edge
 	public WebDriver driver;
 	public String sURL = "";
@@ -85,8 +85,8 @@ public class BeforeAndAfter extends HTMLReport{
 		return data;
 	}
 
-  public String takeScreenshot() {
-		String sPath = System.getProperty("user.dir")+"/snap/img"+System.currentTimeMillis()+".png";
+ public String takeScreenshot() {
+		String sPath = System.getProperty("user.dir")+"./snap/"+System.currentTimeMillis()+".png";
 		TakesScreenshot oShot = (TakesScreenshot)driver;
 		File osrc = oShot.getScreenshotAs(OutputType.FILE);
 		File dis = new File(sPath);
