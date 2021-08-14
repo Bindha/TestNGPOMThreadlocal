@@ -8,6 +8,8 @@
 			<class name="testcase.TC003_ApplyNewAccount" />
 			<class name="testcase.TC004_FundTransfer" />
 			<class name="testcase.TC005_ApplyingLoan" />
+
+
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -48,7 +48,7 @@ import pages.Registrationpage;
 
 	public int randomNumGen() {
 		Random ran = new Random();
-		return ran.nextInt(100);
+		return ran.nextInt(1000);
 
 	}
 

@@ -13,6 +13,8 @@ public class TransferMoneyPage extends BeforeAndAfter{
 	private By oToAcc=By.xpath("//select[@id='toAccount']");
 	private By oAmount=By.xpath("//input[@id='amountTransferred']");
 	private By oReview=By.xpath("(//button[@type='button'])[2]");
+	private By From=By.xpath("(//option[@value='2: Object'])[1]");
+	private By To=By.xpath("(//option[@value='3: Object'])[2]");
 	private WebDriver driver;
 	private SeleniumWrapper oWrap;
 	
@@ -24,11 +26,13 @@ public class TransferMoneyPage extends BeforeAndAfter{
 		oWrap = new SeleniumWrapper(driver,node);
 	}
 	public TransferMoneyPage select_from() {
-		oWrap.selectDropDownUsingVisibleText(driver.findElement(oFromAcc), "Kanya: 61129ec44c134a0040ea6697 - $100.00");
+		String fromtext=driver.findElement(From).getText();
+		oWrap.selectDropDownUsingVisibleText(driver.findElement(oFromAcc),fromtext);
 		return this;
 	}
 	public TransferMoneyPage select_to() {
-		oWrap.selectDropDownUsingVisibleText(driver.findElement(oToAcc), "Kanya: 61129f664c134a0040ea669c - $100.00");
+		String totext=driver.findElement(To).getText();
+		oWrap.selectDropDownUsingVisibleText(driver.findElement(oToAcc),totext);
 		return this;
 	}
 	public TransferMoneyPage enter_amount() {
