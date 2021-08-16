@@ -25,14 +25,14 @@ import pages.Registrationpage;
 	  @Test(priority = 1)
 	  public void verifyAlltheElements() {
 		 
-		 boolean result = new LoginPage(driver,node).clickRegisterAccount().verifyElement();
+		 boolean result = new LoginPage().clickRegisterAccount().verifyElement();
 		  Assert.assertTrue(result);
-		  new Registrationpage(driver,node).clickOnLogin();
+		  new Registrationpage().clickOnLogin();
 	  
 	  }
 	  @Test(priority = 2,dataProvider = "ExcelData")
 	public void registerWithMandatoryFields(String fName,String mName,String lName,String uName,String email,String password) {
-		 new LoginPage(driver,node).clickRegisterAccount()
+		 new LoginPage().clickRegisterAccount()
 		 .enter_the_first_name(fName)
 		 .enter_the_middle_name(mName)
 		 .enter_the_last_name(lName)

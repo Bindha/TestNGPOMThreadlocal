@@ -15,18 +15,13 @@ public class HomePage extends BeforeAndAfter{
 	 private By oAccount=By.xpath("//strong[text()='Kanya']");
 	 private By oTransfer=By.xpath("(//a[@class='btn-blue-outline'])[1]");
 	 private By oLoan=By.xpath("(//a[@id='applyForLoan'])[1]");
-	private WebDriver driver;
+	//private WebDriver getDriver();
 	
-	private SeleniumWrapper oWrap;
+	//private SeleniumWrapper oWrap;
 
-	public HomePage(WebDriver driver,ExtentTest node) {
-		this.driver = driver;
-		this.node = node;
-		oWrap = new SeleniumWrapper(driver,node);
-	}
-
+	
 	public HomePage verifyHomePage() {
-		boolean result = oWrap.verifyDisplayedwithReturn(driver.findElement(oWelcome));
+		boolean result = verifyDisplayedwithReturn(getDriver().findElement(oWelcome));
 		if(result) {
 			System.out.println("User Login is Successfull!!!");
 		}else {
@@ -36,18 +31,18 @@ public class HomePage extends BeforeAndAfter{
 	}
 
 	public LoginPage clickLogout() {
-		oWrap.click(driver.findElement(oLogout));
-		return new LoginPage(driver,node);
+		click(getDriver().findElement(oLogout));
+		return new LoginPage();
 	}
 
 
  public NewAccountPage applyNewAccount() {
-	 oWrap.click(driver.findElement(By.xpath("//div[@tabindex='0']")));
-	 return new NewAccountPage(driver,node);
+	 click(getDriver().findElement(By.xpath("//div[@tabindex='0']")));
+	 return new NewAccountPage();
  }
  
  public HomePage accountCreated() {
-	 boolean result=oWrap.verifyDisplayedwithReturn( driver.findElement(oAccount));
+	 boolean result=verifyDisplayedwithReturn( getDriver().findElement(oAccount));
 	 if(result) {
 		 System.out.println("Account Created in the name of Kanya ");
 	 }
@@ -57,13 +52,13 @@ public class HomePage extends BeforeAndAfter{
 	 return this;
  }
  public TransferMoneyPage transferMoney() {
-	 oWrap.click(driver.findElement(oTransfer));
+	 click(getDriver().findElement(oTransfer));
 	 System.out.println("To transfer funds");
-	 return new TransferMoneyPage(driver, node);
+	 return new TransferMoneyPage();
  }
  public ApplyLoanPage applyLoan() {
-	 oWrap.click(driver.findElement(oLoan));
+	 click(getDriver().findElement(oLoan));
 	 System.out.println("Applying for new Loan");
-	 return new ApplyLoanPage(driver,node);
+	 return new ApplyLoanPage();
  }
 }

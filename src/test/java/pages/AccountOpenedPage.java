@@ -9,19 +9,15 @@ import base.BeforeAndAfter;
 import libraries.SeleniumWrapper;
 
 public class AccountOpenedPage extends BeforeAndAfter {
-	 private WebDriver driver;
+	 //private WebDriver getDriver();
 	 private By congrts=By.xpath("//h1[contains(text(),'Congrats')]");
-	 private SeleniumWrapper oWrap;
+	 //private SeleniumWrapper oWrap;
 	 
-	 public AccountOpenedPage(WebDriver driver,ExtentTest node) {
-			this.driver = driver;
-			this.node = node;
-			oWrap = new SeleniumWrapper(driver,node);
-		}
+	 
 	 
 	  public AccountOpenedPage verifyPage() {
 
-		boolean result=oWrap.verifyDisplayedwithReturn( driver.findElement(congrts));
+		boolean result=verifyDisplayedwithReturn( getDriver().findElement(congrts));
 		 if(result) {
 			 System.out.println("User account is created");
 		 }
@@ -32,7 +28,7 @@ public class AccountOpenedPage extends BeforeAndAfter {
 		 
 	  }
 	  public HomePage viewAccount() {
-	oWrap.click(driver.findElement(By.xpath("//div[@id='viewAccounts']")));
-	return new HomePage(driver,node);
+	click(getDriver().findElement(By.xpath("//div[@id='viewAccounts']")));
+	return new HomePage();
 }
 }

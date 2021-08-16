@@ -9,21 +9,17 @@ import base.BeforeAndAfter;
 import libraries.SeleniumWrapper;
 
 public class Transferconfirmation extends BeforeAndAfter{
-	private WebDriver driver;
-	private SeleniumWrapper oWrap;
+	//private WebDriver getDriver();
+	//private SeleniumWrapper oWrap;
 	private By oConfirm=By.xpath("(//button[@type='button'])[5]");
 	
 	
-	public Transferconfirmation(WebDriver driver, ExtentTest node) {
-		this.driver = driver;
-		this.node = node;
-		oWrap = new SeleniumWrapper(driver,node);
-	}
+	
 	
 	public HomePage click_confirm_transfer() {
-		oWrap.click(driver.findElement(oConfirm));
+		click(getDriver().findElement(oConfirm));
 		System.out.println("Amount transferred succesfully");
-		return new HomePage(driver,node);
+		return new HomePage();
 	
 }
 }

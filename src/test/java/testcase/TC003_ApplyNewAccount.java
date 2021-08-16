@@ -19,12 +19,12 @@ public class TC003_ApplyNewAccount extends BeforeAndAfter {
 	}
   @Test(priority = 1)
   public void verifyAlltheElements(){
-	  boolean result = new LoginPage(driver,node).verifyElement();
+	  boolean result = new LoginPage().verifyElement();
 		Assert.assertTrue(result);
   }
   @Test(priority = 2)
   public void creatingAccount() {
-	  new LoginPage(driver,node)
+	  new LoginPage()
 	  .typeUserName("Brindha")
 	  .typePassword("Rajabindhu30")
 	  .clickSignIn().applyNewAccount().
